@@ -9,5 +9,29 @@
   </head>
   <body>
     <p>Hello world!</p>
+    <div id="task"></div>
   </body>
+
+  <script>
+
+    var request = new XMLHttpRequest();
+    request.open('GET', "https://private-c560e-todos24.apiary-mock.com/task/1", true);
+
+    request.onload = function() {
+      if(request.status >= 200 && request.status < 400) {
+        console.log("Success");
+        var data = JSON.parse(request.responseText);
+        console.log(data);
+      } else {
+        console.log("We reached our target server, but it returned an error.");
+      }
+    }
+
+    request.onerror = function() {
+      console.log("There was a connection error of some sort.");
+    }
+
+    request.send();
+
+  </script>
 </html>
